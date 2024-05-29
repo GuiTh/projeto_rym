@@ -1,1 +1,4 @@
-export class CreateArtistaDto {}
+export class CreateArtistaDto {
+    readonly name: string;
+    readonly bio?: string;
+}

@@ -8,10 +8,12 @@ import { ArtistasModule } from './artistas/artistas.module';
 import { SongsModule } from './songs/songs.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RatingsModule } from './ratings/ratings.module';
+import { CommentsModule } from './comments/comments.module';
+import { GenresModule } from './genres/genres.module';
 
 
 @Module({
-  imports: [ConfigModule.forRoot(), AlbumsModule, ArtistasModule, SongsModule, ReviewsModule, RatingsModule],
+  imports: [ConfigModule.forRoot(), AlbumsModule, ArtistasModule, SongsModule, ReviewsModule, RatingsModule, CommentsModule, GenresModule],
   controllers: [AppController],
   providers: [AppService, UsersService],
 })
