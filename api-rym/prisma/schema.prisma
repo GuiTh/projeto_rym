@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id       Int             @id @default(autoincrement())
+  email         String          @unique
+  userName      String
+  passWord      String
+  createdAt     DateTime        @default(now())
+  Reviews       Reviews[]
+  Ratings       Ratings[]
+  Comments      Comments[]
+  UserFavorites UserFavorites[]
+}
+
+model Artists {
+  artist_id   Int           @id @default(autoincrement())
+  name        String
+  bio         String?
+  createdAt   DateTime      @default(now())
+  AlbumArtist AlbumArtist[]
+}
+
+model Albuns {
+  album_id      Int             @id @default(autoincrement())
+  title         String
+  releaseDate   DateTime?
+  coverUrl      String?
+  createdAt     DateTime        @default(now())
+  Songs         Songs[]
+  Reviews       Reviews[]
+  Ratings       Ratings[]
+  UserFavorites UserFavorites[]
+  AlbumArtist   AlbumArtist[]
+  AlbumGenres   AlbumGenres[]
+}
+
+model Songs {
+  song_id    Int          @id @default(autoincrement())
+  title      String
+  albumID    Int
+  album      Albuns       @relation(fields: [albumID], references: [album_id])
+  duration   Int?
+  createdAt  DateTime     @default(now())
+  SongGenres SongGenres[]
+}
+
+model Reviews {
+  review_id  Int        @id @default(autoincrement())
+  userID     Int
+  user       User       @relation(fields: [userID], references: [user_id])
+  albumID    Int
+  album      Albuns     @relation(fields: [albumID], references: [album_id])
+  rating     Int
+  reviewText String
+  createdAt  DateTime   @default(now())
+  Comments   Comments[]
+}
+
+model Ratings {
+  rating_id Int      @id @default(autoincrement())
+  userID    Int
+  user      User     @relation(fields: [userID], references: [user_id])
+  albumID   Int
+  album     Albuns   @relation(fields: [albumID], references: [album_id])
+  rating    Int
+  createdAt DateTime @default(now())
+}
+
+model Genres {
+  genre_id    Int           @id @default(autoincrement())
+  name        String        @unique
+  AlbumGenres AlbumGenres[]
+  SongGenres  SongGenres[]
+}
+
+model Comments {
+  comment_id  Int      @id @default(autoincrement())
+  review      Reviews  @relation(fields: [reviewID], references: [review_id])
+  reviewID    Int
+  user        User     @relation(fields: [userId], references: [user_id])
+  userId      Int
+  commentText String
+  createdAt   DateTime @default(now())
+}
+
+model UserFavorites {
+  userID  Int
+  user    User   @relation(fields: [userID], references: [user_id])
+  albumID Int
+  album   Albuns @relation(fields: [albumID], references: [album_id])
+
+  @@id([userID, albumID])
+}
+
+model AlbumArtist {
+  artistId Int
+  artist   Artists @relation(fields: [artistId], references: [artist_id])
+  albumId  Int
+  album    Albuns  @relation(fields: [albumId], references: [album_id])
+
+  @@id([albumId, artistId])
+}
+
+model AlbumGenres {
+  genreId Int
+  genre   Genres @relation(fields: [genreId], references: [genre_id])
+  albumId Int
+  album   Albuns @relation(fields: [albumId], references: [album_id])
+
+  @@id([albumId, genreId])
+}
+
+model SongGenres {
+  songId  Int
+  song    Songs  @relation(fields: [songId], references: [song_id])
+  genreId Int
+  genre   Genres @relation(fields: [genreId], references: [genre_id])
+
+  @@id([songId, genreId])
+}
