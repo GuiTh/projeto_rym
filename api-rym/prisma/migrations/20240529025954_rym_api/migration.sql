@@ -58,7 +58,7 @@ CREATE TABLE "Ratings" (
     "rating_id" SERIAL NOT NULL,
     "userID" INTEGER NOT NULL,
     "albumID" INTEGER NOT NULL,
-    "rating" INTEGER NOT NULL,
+    "score" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Ratings_pkey" PRIMARY KEY ("rating_id")

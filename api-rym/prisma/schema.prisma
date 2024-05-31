@@ -75,8 +75,10 @@ model Ratings {
   user      User     @relation(fields: [userID], references: [user_id])
   albumID   Int
   album     Albuns   @relation(fields: [albumID], references: [album_id])
-  rating    Int
+  score     Int
   createdAt DateTime @default(now())
+
+  @@unique([userID, albumID])
 }
 
 model Genres {

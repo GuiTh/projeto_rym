@@ -10,11 +10,13 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { RatingsModule } from './ratings/ratings.module';
 import { CommentsModule } from './comments/comments.module';
 import { GenresModule } from './genres/genres.module';
+import { PrismaModule } from 'prisma/prisma.module';
+import { UsersController } from './users/users.controller';
 
 
 @Module({
-  imports: [ConfigModule.forRoot(), AlbumsModule, ArtistasModule, SongsModule, ReviewsModule, RatingsModule, CommentsModule, GenresModule],
-  controllers: [AppController],
+  imports: [ConfigModule.forRoot(), AlbumsModule, ArtistasModule, SongsModule, ReviewsModule, RatingsModule, CommentsModule, GenresModule, PrismaModule],
+  controllers: [AppController, UsersController],
   providers: [AppService, UsersService],
 })
 export class AppModule {}
