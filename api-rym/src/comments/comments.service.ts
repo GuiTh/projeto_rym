@@ -23,7 +23,7 @@ export class CommentsService {
     }
   }
 
-  findAll(album_id: number) {
+  findAllByAlbum(album_id: number) {
     if(album_id){
       return this.prisma.comments.findMany({
         where: {albumID: album_id},
@@ -33,9 +33,41 @@ export class CommentsService {
     }
   }
 
+  findAllByUser(user_id: number){
+    if(user_id){
+      return this.prisma.comments.findMany({
+        where: {userId: user_id},
+      })
+    }else{
 
-  update(id: number, updateCommentDto: UpdateCommentDto) {
-    return `This action updates a #${id} comment`;
+      console.log("Usuario nao tem comentarios")
+    }
+  }
+
+  async update(comment_id: number, user_id: number, updateCommentDto: UpdateCommentDto) {
+    const {commentText} = updateCommentDto
+
+    const comment = await this.prisma.comments.findUnique({
+      where: {comment_id}
+    })
+
+    if(!comment){
+      throw new NotFoundException("comentario nao encontrado")
+    }else if(comment.userId !== user_id){
+      throw new UnauthorizedException("Voce nao tem permissao para atualizar esse comentario")
+    }
+
+    try{
+      await this.prisma.comments.update({
+        where:{ comment_id },
+        data:{
+          commentText
+        }
+      })
+    }catch(err){
+      console.log(err)
+    }
+
   }
 
   async remove(commentId: number, userId:number) {

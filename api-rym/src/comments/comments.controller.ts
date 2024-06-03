@@ -12,18 +12,22 @@ export class CommentsController {
   @Post()
   create(@Body() createCommentDto: CreateCommentDto, @Req() req: any) {
     return this.commentsService.create(createCommentDto, req.user.id);
-    // Verifique se req.user.id está correto e se está sendo passado para o serviço de comentários
   }
 
-  @Get()
-  findAll(@Req() req:any) {
-    return this.commentsService.findAll(req.user.id);
+  @Get('album_comments')
+  findAllByAlbum(@Req() req:any) {
+    return this.commentsService.findAllByAlbum(req.album.id);
+  }
+
+  @Get('user_comments')
+  findAllByUser(@Req() req:any){
+    return this.commentsService.findAllByUser(req.user.id)
   }
 
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
-    return this.commentsService.update(+id, updateCommentDto);
+  update(@Param('id') id: string, @Req() req:any, @Body() updateCommentDto: UpdateCommentDto) {
+    return this.commentsService.update(+id, req.user.id, updateCommentDto);
   }
 
   @UseGuards(AuthGuard("jwt"))

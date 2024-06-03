@@ -93,11 +93,11 @@ model Genres {
 
 model Comments {
   comment_id  Int      @id @default(autoincrement())
+  commentText String
   user        User     @relation(fields: [userId], references: [user_id])
   userId      Int
   albumID     Int
   album       Albuns   @relation(fields: [albumID], references: [album_id])
-  commentText String
   createdAt   DateTime @default(now())
 }
 
