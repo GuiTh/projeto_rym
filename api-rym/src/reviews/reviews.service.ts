@@ -9,15 +9,15 @@ export class ReviewsService {
 
   create(createReviewDto: CreateReviewDto) {
     const {userId, albumId, reviewText} = createReviewDto;
-    // try{
-    //   return this.prisma.reviews.create({
-    //     data:{
-    //       reviewText
-    //     }
-    //   })
-    // }catch(err){
-    //   console.log(err)
-    // }
+    try{
+      return this.prisma.reviews.create({
+        data:{
+          reviewText
+        }
+      })
+    }catch(err){
+      console.log(err)
+    }
   }
 
   findAll() {

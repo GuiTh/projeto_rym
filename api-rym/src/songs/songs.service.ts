@@ -36,6 +36,7 @@ export class SongsService {
     }else{
       throw new NotFoundException(`O album ${albumName} nao foi encontrado`)
     }
+    
     return this.prisma.songs.create({
       data:{
         title,

@@ -1,5 +1,4 @@
 export class CreateCommentDto {
-    readonly reviewId: number;
-    readonly userId: number;
+    readonly albumId: number;
     readonly commentText: string;
 }

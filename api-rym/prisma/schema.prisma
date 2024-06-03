@@ -46,6 +46,7 @@ model Albuns {
   UserFavorites UserFavorites[]
   AlbumArtist   AlbumArtist[]
   AlbumGenres   AlbumGenres[]
+  Comments      Comments[]
 }
 
 model Songs {
@@ -61,15 +62,14 @@ model Songs {
 }
 
 model Reviews {
-  review_id  Int        @id @default(autoincrement())
+  review_id  Int      @id @default(autoincrement())
   userID     Int
-  user       User       @relation(fields: [userID], references: [user_id])
+  user       User     @relation(fields: [userID], references: [user_id])
   albumID    Int
-  album      Albuns     @relation(fields: [albumID], references: [album_id])
+  album      Albuns   @relation(fields: [albumID], references: [album_id])
   rating     Int
   reviewText String
-  createdAt  DateTime   @default(now())
-  Comments   Comments[]
+  createdAt  DateTime @default(now())
 }
 
 model Ratings {
@@ -93,10 +93,10 @@ model Genres {
 
 model Comments {
   comment_id  Int      @id @default(autoincrement())
-  review      Reviews  @relation(fields: [reviewID], references: [review_id])
-  reviewID    Int
   user        User     @relation(fields: [userId], references: [user_id])
   userId      Int
+  albumID     Int
+  album       Albuns   @relation(fields: [albumID], references: [album_id])
   commentText String
   createdAt   DateTime @default(now())
 }

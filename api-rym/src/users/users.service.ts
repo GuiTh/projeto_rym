@@ -54,6 +54,12 @@ export class UsersService {
     }
   }
 
+  async findOneByUsername(username: string) {
+    return this.prisma.user.findUnique({
+      where: { username },
+    });
+  }
+
   async remove(id: number) {
     try{
       await this.findOne(id)
