@@ -27,15 +27,16 @@ model User {
 
 model Artists {
   artist_id   Int           @id @default(autoincrement())
-  name        String
+  name        String        @unique
   bio         String?
   createdAt   DateTime      @default(now())
   AlbumArtist AlbumArtist[]
+  Songs       Songs[]
 }
 
 model Albuns {
   album_id      Int             @id @default(autoincrement())
-  title         String
+  title         String          @unique
   releaseDate   DateTime?
   coverUrl      String?
   createdAt     DateTime        @default(now())
@@ -52,6 +53,8 @@ model Songs {
   title      String
   albumID    Int
   album      Albuns       @relation(fields: [albumID], references: [album_id])
+  artist     Artists      @relation(fields: [artistId], references: [artist_id])
+  artistId   Int
   duration   Int?
   createdAt  DateTime     @default(now())
   SongGenres SongGenres[]

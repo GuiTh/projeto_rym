@@ -1,5 +1,6 @@
 export class CreateSongDto {
     readonly title: string;
     readonly duration?: number;
-    readonly albumId: number;
+    readonly albumName?: string;
+    readonly artistName: string;
 }
