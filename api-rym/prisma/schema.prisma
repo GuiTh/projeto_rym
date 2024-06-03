@@ -16,7 +16,7 @@ datasource db {
 model User {
   user_id       Int             @id @default(autoincrement())
   email         String          @unique
-  userName      String
+  userName      String @unique
   passWord      String
   createdAt     DateTime        @default(now())
   Reviews       Reviews[]

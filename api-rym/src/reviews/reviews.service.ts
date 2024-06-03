@@ -8,16 +8,17 @@ export class ReviewsService {
   constructor( private readonly prisma: PrismaService){}
 
   create(createReviewDto: CreateReviewDto) {
-    const {userId, albumId, reviewText} = createReviewDto;
-    try{
-      return this.prisma.reviews.create({
-        data:{
-          reviewText
-        }
-      })
-    }catch(err){
-      console.log(err)
-    }
+    // const {userId, albumId, reviewText} = createReviewDto;
+    // try{
+    //   return this.prisma.reviews.create({
+    //     data:{
+    //       reviewText
+    //     }
+    //   })
+    // }catch(err){
+    //   console.log(err)
+    // }
+    return `sai daqui`
   }
 
   findAll() {

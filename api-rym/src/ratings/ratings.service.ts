@@ -37,10 +37,10 @@ export class RatingsService {
     
   }
 
-  async findOne(id: number) {
+  async findOne(rating_id: number) {
     try{
       return this.prisma.ratings.findUnique({
-        where: {rating_id: id},
+        where: {rating_id},
         include:{
           user: true,
           album: true
@@ -51,11 +51,11 @@ export class RatingsService {
     }
   }
 
-  async update(id: number, updateRatingDto: UpdateRatingDto) {
+  async update(rating_id: number, updateRatingDto: UpdateRatingDto) {
     const {score} = updateRatingDto;
     try{
       return this.prisma.ratings.update({where: 
-        {rating_id: id},
+        {rating_id},
         data:{
           score: score
         }
@@ -65,10 +65,10 @@ export class RatingsService {
     }
   }
 
-  async remove(id: number) {
+  async remove(rating_id: number) {
     try{
       return this.prisma.ratings.delete({
-        where:{rating_id: id}
+        where:{rating_id}
       })
     }catch(err){
       console.log(err)

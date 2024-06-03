@@ -12,23 +12,23 @@ export class AlbumsController {
     return this.albumsService.create(createAlbumDto);
   }
 
-  @Get()
-  findAll() {
-    return this.albumsService.findAll();
+  @Get('artist/:artistId')
+  findAllByArtist(@Param('artistId') artistId: string) {
+    return this.albumsService.findAllByArtist(Number(artistId));
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.albumsService.findOne(+id);
+    return this.albumsService.findOne(Number(id));
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAlbumDto: UpdateAlbumDto) {
-    return this.albumsService.update(+id, updateAlbumDto);
+    return this.albumsService.update(Number(id), updateAlbumDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.albumsService.remove(+id);
+    return this.albumsService.remove(Number(id));
   }
 }

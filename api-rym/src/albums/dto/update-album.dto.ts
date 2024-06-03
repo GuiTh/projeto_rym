@@ -5,4 +5,5 @@ export class UpdateAlbumDto extends PartialType(CreateAlbumDto) {
     readonly title?: string;
     readonly releaseDate?: Date;
     readonly coverUrl?: string;
+    readonly artistId?: number;
 }
