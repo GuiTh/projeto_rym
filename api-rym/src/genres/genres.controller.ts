@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { GenresService } from './genres.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
 import { UpdateGenreDto } from './dto/update-genre.dto';
@@ -17,18 +17,23 @@ export class GenresController {
     return this.genresService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.genresService.findOne(+id);
+  @Get(':genre_id')
+  findOne(@Param('genre_id') genre_id: string) {
+    return this.genresService.findOne(+genre_id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGenreDto: UpdateGenreDto) {
-    return this.genresService.update(+id, updateGenreDto);
+  @Get(":genre_id/albumbs")
+  findAlbumsByName(@Param("genre_id", ParseIntPipe) genre_id: number){
+    return this.genresService.findAlbumsByGenre(genre_id)
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.genresService.remove(+id);
+  @Patch(':genre_id')
+  update(@Param('genre_id') genre_id: string, @Body() updateGenreDto: UpdateGenreDto) {
+    return this.genresService.update(+genre_id, updateGenreDto);
+  }
+
+  @Delete(':genre_id')
+  remove(@Param('genre_id') genre_id: string) {
+    return this.genresService.remove(+genre_id);
   }
 }

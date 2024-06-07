@@ -32,6 +32,7 @@ model Artists {
   createdAt   DateTime      @default(now())
   AlbumArtist AlbumArtist[]
   Songs       Songs[]
+  ArtistGenres ArtistGenre[]
 }
 
 model Albuns {
@@ -89,6 +90,7 @@ model Genres {
   name        String        @unique
   AlbumGenres AlbumGenres[]
   SongGenres  SongGenres[]
+  ArtistGenres ArtistGenre[]
 }
 
 model Comments {
@@ -120,12 +122,12 @@ model AlbumArtist {
 }
 
 model AlbumGenres {
-  genreId Int
-  genre   Genres @relation(fields: [genreId], references: [genre_id])
-  albumId Int
-  album   Albuns @relation(fields: [albumId], references: [album_id])
-
-  @@id([albumId, genreId])
+  albumGenre_id Int        @id @default(autoincrement())
+  albumId       Int
+  genreId       Int
+  album         Albuns     @relation(fields: [albumId], references: [album_id])
+  genre         Genres     @relation(fields: [genreId], references: [genre_id])
+  @@unique([albumId, genreId])
 }
 
 model SongGenres {
@@ -135,4 +137,13 @@ model SongGenres {
   genre   Genres @relation(fields: [genreId], references: [genre_id])
 
   @@id([songId, genreId])
+}
+
+model ArtistGenre{
+  artistGenre_id Int @id @default(autoincrement())
+  artistId Int  
+  genreId Int
+  artist Artists @relation(fields: [artistId], references: [artist_id])
+  genre Genres @relation(fields: [genreId], references: [genre_id])
+  @@unique([artistId, genreId])
 }
