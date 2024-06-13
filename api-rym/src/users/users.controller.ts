@@ -22,7 +22,7 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
-  @Get("user/:username")
+  @Get(":username")
   findOneByUsername(@Param('username') username: string){
     return this.usersService.findOneByUsername(username)
   }
