@@ -14,9 +14,9 @@ export class CommentsController {
     return this.commentsService.create(createCommentDto, req.user.id);
   }
 
-  @Get('album_comments')
-  findAllByAlbum(@Req() req:any) {
-    return this.commentsService.findAllByAlbum(req.album.id);
+  @Get('album/:album_id')
+  async findAllByAlbum(@Param('album_id') album_id: number) {
+    return await this.commentsService.findAllByAlbum(+album_id);
   }
 
   @Get('user_comments')

@@ -12,9 +12,14 @@ export class SongsController {
     return this.songsService.create(createSongDto);
   }
 
-  @Get()
-  findAll() {
-    return this.songsService.findAll();
+  @Get('artist/:artistId')
+  async getSongByArtist(@Param('artistId') artistId: number) {
+    return await this.songsService.findSongsByArtist(artistId);
+  }
+
+  @Get('album/:albumId')
+  async getSongsByAlbum(@Param('albumId') albumId: number) {
+    return await this.songsService.getSongsByAlbum(albumId);
   }
 
   @Get(':id')

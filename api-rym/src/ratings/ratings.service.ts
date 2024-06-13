@@ -23,18 +23,15 @@ export class RatingsService {
     }
   }
 
-  async findAll() {
-    try{
-      return this.prisma.ratings.findMany({
-        include:{
-          user: true,
-          album: true
-        }
+  async findAllByAlbum(albumId: number) {
+    if (albumId) {
+      const ratings = await this.prisma.ratings.findMany({
+        where: { albumID: albumId },
       });
-    }catch(err){
-      console.log(err)
+      return ratings;
+    } else {
+      throw new Error('Album ID is required');
     }
-    
   }
 
   async findOne(rating_id: number) {

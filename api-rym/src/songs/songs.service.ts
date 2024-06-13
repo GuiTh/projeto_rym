@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
 import { PrismaService } from 'prisma/prisma.service';
-import { connect } from 'http2';
 
 @Injectable()
 export class SongsService {
@@ -51,17 +50,22 @@ export class SongsService {
     
   }
 
-  async findAll() {
-    try{
-      return this.prisma.songs.findMany({
-        include:{
-          artist: true,
-          album: true
+  async findSongsByArtist(artist_id: number){
+    const songs = await this.prisma.songs.findMany({
+      where:{
+        artist:{
+            artist_id
         }
-      })
-    }catch(err){
-      console.log(err)
-    }
+      }
+    })
+  }
+
+  async getSongsByAlbum(albumId: number) {
+    return this.prisma.songs.findMany({
+      where: {
+        albumID: albumId,
+      },
+    });
   }
 
   async findOne(id: number) {

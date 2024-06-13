@@ -23,13 +23,15 @@ export class CommentsService {
     }
   }
 
-  findAllByAlbum(album_id: number) {
-    if(album_id){
-      return this.prisma.comments.findMany({
-        where: {albumID: album_id},
-      })
-    }else{
-      console.log("Sem comentarios nesse album, faça seu primeiro comentario!")
+  async findAllByAlbum(album_id: number) {
+    if (album_id) {
+      const comments = await this.prisma.comments.findMany({
+        where: { albumID: album_id },
+      });
+
+      return comments;
+    } else {
+      throw new Error('Album ID is required');
     }
   }
 

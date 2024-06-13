@@ -12,9 +12,10 @@ export class RatingsController {
     return this.ratingsService.create(createRatingDto);
   }
 
-  @Get()
-  findAll() {
-    return this.ratingsService.findAll();
+
+  @Get('album/:albumId')
+  async findAllByAlbum(@Param('albumId') albumId: number) {
+    return await this.ratingsService.findAllByAlbum(+albumId);
   }
 
   @Get(':id')
