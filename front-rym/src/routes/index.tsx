@@ -9,7 +9,7 @@ const AppRoutes: React.FC = () =>{
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />}/>
-                <Route path="/album/:album_id" element={<AlbumPage  />} />
+                <Route path="/album/:album_id/artist/:artist_id" element={<AlbumPage  />} />
                 <Route path="/artist/:artist_id" element={<ArtistPage />} />
             </Routes>
         </Router>
