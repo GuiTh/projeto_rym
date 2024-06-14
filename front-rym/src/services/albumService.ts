@@ -1,9 +1,10 @@
 import api from "../api";
 
-interface Album{
+export interface Album{
     title: string;
     releaseDate?: string;
     coverUrl?: string;
+    artistName?: string;
 }
 
 export const getAlbumsByArtist = async (artist_id: number) =>{

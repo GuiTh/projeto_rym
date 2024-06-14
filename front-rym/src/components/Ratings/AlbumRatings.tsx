@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { getRatingsByAlbum } from '../../services/ratingService';
+import React, { useEffect, useState } from 'react';
+import { getRatingsByAlbum, Rating } from '../../services/ratingService';
 
 interface Props {
   albumId: number;
 }
 
-const AlbumRatings: React.FC<Props> = ({ albumId }) => {
-  const [ratings, setRatings] = useState<any[]>([]); // Use any[] como tipo de estado
+const Ratings: React.FC<Props> = ({ albumId }) => {
+  const [ratings, setRatings] = useState<Rating[]>([]);
 
   useEffect(() => {
     const fetchRatings = async () => {
@@ -14,8 +14,7 @@ const AlbumRatings: React.FC<Props> = ({ albumId }) => {
         const data = await getRatingsByAlbum(albumId);
         setRatings(data);
       } catch (error) {
-        console.error('Failed to fetch ratings:', error);
-        // Trate o erro conforme necessário
+        console.error("Erro ao buscar as avaliações:", error);
       }
     };
 
@@ -24,18 +23,18 @@ const AlbumRatings: React.FC<Props> = ({ albumId }) => {
 
   return (
     <div>
-      <h2>Ratings do Álbum</h2>
-      <ul>
-        {ratings.map((rating, index) => (
-          <li key={index}>
-            <p>Rating: {rating.rating}</p> {/* Acesse os campos conforme necessário */}
-            <p>Usuário ID: {rating.userId}</p>
-            {/* Renderize outras informações do rating conforme necessário */}
-          </li>
-        ))}
-      </ul>
+      <h2>Avaliações</h2>
+      {ratings.length > 0 ? (
+        <ul>
+          {ratings.map((rating, index) => (
+            <li key={index}>Nota: {rating.rating}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>Sem avaliações.</p>
+      )}
     </div>
   );
 };
 
-export default AlbumRatings;
+export default Ratings;

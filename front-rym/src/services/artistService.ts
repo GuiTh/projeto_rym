@@ -15,6 +15,11 @@ export const getArtistByName = async(artist_name: string) =>{
     return response.data
 }
 
+export const getArtistById = async(artist_id: number) =>{
+    const response = await api.get(`/artistas/${artist_id}`)
+    return response.data
+}
+
 export const createArtist = async(artist: Artist) =>{
     const response = await api.post(`/artistas`, artist)
     return response.data

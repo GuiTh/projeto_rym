@@ -1,7 +1,7 @@
 import api from '../api';
 
 // Interface para definir a estrutura de uma avaliação
-interface Rating {
+export interface Rating {
   rating_id: number;
   userId: number;
   albumId: number;

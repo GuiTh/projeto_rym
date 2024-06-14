@@ -18,7 +18,7 @@ export interface Comment {
   };
 
   export const getCommentsByAlbum = async (album_id: number): Promise<Comment[]> => {
-    const response = await api.get<Comment[]>(`/comments/album/${album_id}`);
+    const response = await api.get(`/comments/album/${album_id}`);
     return response.data;
   };
 
