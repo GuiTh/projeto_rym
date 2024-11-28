@@ -15,7 +15,8 @@ export class AlbumsService {
       title,
       releaseDate,
       coverUrl
-    }
+    };
+
     const album = await this.prisma.albuns.create({
       data: albumData
     })
@@ -27,7 +28,8 @@ export class AlbumsService {
           artistId: artistId
         }
       })
-    }
+    };
+    
     return album
   }
 
