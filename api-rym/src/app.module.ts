@@ -15,7 +15,7 @@ import { UsersController } from './users/users.controller';
 
 
 @Module({
-  imports: [ConfigModule.forRoot(), AlbumsModule, ArtistasModule, SongsModule, ReviewsModule, RatingsModule, CommentsModule, GenresModule, PrismaModule],
+  imports: [AlbumsModule, ArtistasModule, SongsModule, ReviewsModule, RatingsModule, CommentsModule, GenresModule, PrismaModule],
   controllers: [AppController, UsersController],
   providers: [AppService, UsersService],
 })

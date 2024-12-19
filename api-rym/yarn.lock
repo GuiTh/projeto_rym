@@ -841,41 +841,41 @@
   resolved "https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz"
   integrity sha512-akMSuyvLKeoU4LeyBAUdThP/uhVP3GuLygFE3MlYzaCb3/J8SfsYBE5PkaFuLuVpLyA6sFoW+16z/aPhNAESqg==
 
-"@prisma/debug@5.15.0":
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/@prisma/debug/-/debug-5.15.0.tgz"
-  integrity sha512-QpEAOjieLPc/4sMny/WrWqtpIAmBYsgqwWlWwIctqZO0AbhQ9QcT6x2Ut3ojbDo/pFRCCA1Z1+xm2MUy7fAkZA==
+"@prisma/debug@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@prisma/debug/-/debug-6.1.0.tgz"
+  integrity sha512-0himsvcM4DGBTtvXkd2Tggv6sl2JyUYLzEGXXleFY+7Kp6rZeSS3hiTW9mwtUlXrwYbJP6pwlVNB7jYElrjWUg==
 
-"@prisma/engines-version@5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022":
-  version "5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
-  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022.tgz"
-  integrity sha512-3BEgZ41Qb4oWHz9kZNofToRvNeS4LZYaT9pienR1gWkjhky6t6K1NyeWNBkqSj2llgraUNbgMOCQPY4f7Qp5wA==
+"@prisma/engines-version@6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959":
+  version "6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959"
+  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959.tgz"
+  integrity sha512-PdJqmYM2Fd8K0weOOtQThWylwjsDlTig+8Pcg47/jszMuLL9iLIaygC3cjWJLda69siRW4STlCTMSgOjZzvKPQ==
 
-"@prisma/engines@5.15.0":
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/@prisma/engines/-/engines-5.15.0.tgz"
-  integrity sha512-hXL5Sn9hh/ZpRKWiyPA5GbvF3laqBHKt6Vo70hYqqOhh5e0ZXDzHcdmxNvOefEFeqxra2DMz2hNbFoPvqrVe1w==
+"@prisma/engines@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@prisma/engines/-/engines-6.1.0.tgz"
+  integrity sha512-GnYJbCiep3Vyr1P/415ReYrgJUjP79fBNc1wCo7NP6Eia0CzL2Ot9vK7Infczv3oK7JLrCcawOSAxFxNFsAERQ==
   dependencies:
-    "@prisma/debug" "5.15.0"
-    "@prisma/engines-version" "5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
-    "@prisma/fetch-engine" "5.15.0"
-    "@prisma/get-platform" "5.15.0"
+    "@prisma/debug" "6.1.0"
+    "@prisma/engines-version" "6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959"
+    "@prisma/fetch-engine" "6.1.0"
+    "@prisma/get-platform" "6.1.0"
 
-"@prisma/fetch-engine@5.15.0":
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-5.15.0.tgz"
-  integrity sha512-z6AY5yyXxc20Klj7wwnfGP0iIUkVKzybqapT02zLYR/nf9ynaeN8bq73WRmi1TkLYn+DJ5Qy+JGu7hBf1pE78A==
+"@prisma/fetch-engine@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.1.0.tgz"
+  integrity sha512-asdFi7TvPlEZ8CzSZ/+Du5wZ27q6OJbRSXh+S8ISZguu+S9KtS/gP7NeXceZyb1Jv1SM1S5YfiCv+STDsG6rrg==
   dependencies:
-    "@prisma/debug" "5.15.0"
-    "@prisma/engines-version" "5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
-    "@prisma/get-platform" "5.15.0"
+    "@prisma/debug" "6.1.0"
+    "@prisma/engines-version" "6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959"
+    "@prisma/get-platform" "6.1.0"
 
-"@prisma/get-platform@5.15.0":
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/@prisma/get-platform/-/get-platform-5.15.0.tgz"
-  integrity sha512-1GULDkW4+/VQb73vihxCBSc4Chc2x88MA+O40tcZFjmBzG4/fF44PaXFxUqKSFltxU9L9GIMLhh0Gfkk/pUbtg==
+"@prisma/get-platform@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.1.0.tgz"
+  integrity sha512-ia8bNjboBoHkmKGGaWtqtlgQOhCi7+f85aOkPJKgNwWvYrT6l78KgojLekE8zMhVk0R9lWcifV0Pf8l3/15V0Q==
   dependencies:
-    "@prisma/debug" "5.15.0"
+    "@prisma/debug" "6.1.0"
 
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
@@ -4312,12 +4312,14 @@ pretty-format@^29.0.0, pretty-format@^29.7.0:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
-prisma@*, prisma@^5.15.0:
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/prisma/-/prisma-5.15.0.tgz"
-  integrity sha512-JA81ACQSCi3a7NUOgonOIkdx8PAVkO+HbUOxmd00Yb8DgIIEpr2V9+Qe/j6MLxIgWtE/OtVQ54rVjfYRbZsCfw==
+prisma@*, prisma@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/prisma/-/prisma-6.1.0.tgz"
+  integrity sha512-aFI3Yi+ApUxkwCJJwyQSwpyzUX7YX3ihzuHNHOyv4GJg3X5tQsmRaJEnZ+ZyfHpMtnyahhmXVfbTZ+lS8ZtfKw==
   dependencies:
-    "@prisma/engines" "5.15.0"
+    "@prisma/engines" "6.1.0"
+  optionalDependencies:
+    fsevents "2.3.3"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
