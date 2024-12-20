@@ -12,13 +12,14 @@ export class UsersService {
     const {email, userName, passWord} = createUserDto
     const salt = 10
     const passwordHash = await bcrypt.hash(passWord, salt)
-
+    const lowerCaseMail = email.toLowerCase()
+    const lowerCaseName = userName.toLowerCase()
 
     try{
-      return this.prisma.user.create({
+      return await this.prisma.user.create({
         data:{
-          email,
-          userName,
+          email: lowerCaseMail,
+          userName: lowerCaseName,
           passWord: passwordHash,
         }
       })
@@ -29,23 +30,59 @@ export class UsersService {
 
   async findAll() {
     try{
-      return this.prisma.user.findMany()
+      return await this.prisma.user.findMany()
     }catch(err){
       console.log(err)
     };
   }
 
   async findOne(id: number) {
-    return this.prisma.user.findUnique({
-      where: { user_id: id }, // Passa um objeto com a chave `id`
-    });
+    const user_id = id || "";
+
+    if(!user_id) return 'usuario nao encontrado';
+
+    try{
+      return await this.prisma.user.findUnique({
+        where: { user_id }// Passa um objeto com a chave `id`
+      });
+    }catch(err){
+      console.log(err)
+    }
+    
+  }
+
+  async findOneByUsername(username: string) {
+    const user_name = username || "";
+
+    if(!user_name) return 'usuario nao encontrado';
+
+    try{
+      return await this.prisma.user.findUnique({
+        where: { userName: username }
+      });
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  async findOneByEmail(email: string){
+    const mail = email || "";
+
+    if(!mail) return "usuario nao encontrado";
+
+    try{
+      return await this.prisma.user.findUnique({
+        where: {email: mail}
+      })
+    }catch(err){
+      console.log(err)
+    }
+    
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    const {userName} = updateUserDto
-
     try{
-      return this.prisma.user.update({
+      return await this.prisma.user.update({
         where: {user_id: id},
         data: updateUserDto
       })
@@ -54,22 +91,10 @@ export class UsersService {
     }
   }
 
-  async findOneByUsername(username: string) {
-    return this.prisma.user.findUnique({
-      where: { userName: username },
-    });
-  }
-  
-  async findOneByEmail(email: string){
-    return this.prisma.user.findUnique({
-      where: {email}
-    })
-  }
-
   async remove(id: number) {
     try{
       await this.findOne(id)
-      return this.prisma.user.delete({
+      return await this.prisma.user.delete({
         where: {user_id: id}
       })
     }catch(err){

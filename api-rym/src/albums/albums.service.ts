@@ -6,7 +6,7 @@ import { PrismaService } from 'prisma/prisma.service';
 @Injectable()
 export class AlbumsService {
   
-  constructor( private readonly prisma:PrismaService){}
+  constructor( private readonly prismaService:PrismaService){}
 
   async create(createAlbumDto: CreateAlbumDto) {
     const { title, artistId, releaseDate, coverUrl } = createAlbumDto
@@ -17,12 +17,12 @@ export class AlbumsService {
       coverUrl
     };
 
-    const album = await this.prisma.albuns.create({
+    const album = await this.prismaService.albuns.create({
       data: albumData
     })
 
     if(artistId){
-      await this.prisma.albumArtist.create({
+      await this.prismaService.albumArtist.create({
         data:{
           albumId: album.album_id,
           artistId: artistId
@@ -34,7 +34,7 @@ export class AlbumsService {
   }
 
   async findAllByArtist(artistId: number) {
-    const album = await this.prisma.albuns.findMany({
+    const album = await this.prismaService.albuns.findMany({
       where:{
         AlbumArtist:{
           some:{
@@ -47,7 +47,7 @@ export class AlbumsService {
   }
 
   async findOne(album_id: number) {
-    const album = await this.prisma.albuns.findUnique({
+    const album = await this.prismaService.albuns.findUnique({
       where: {album_id},
       include:{
         AlbumArtist: true
@@ -63,7 +63,7 @@ export class AlbumsService {
   async update(album_id: number, updateAlbumDto: UpdateAlbumDto) {
     const { title, releaseDate, coverUrl, artistId} = updateAlbumDto
 
-    const existingAlbum = await this.prisma.albuns.findUnique({
+    const existingAlbum = await this.prismaService.albuns.findUnique({
       where: {album_id}
     })
 
@@ -77,13 +77,13 @@ export class AlbumsService {
       coverUrl
     }
 
-    const updatedAlbum = await this.prisma.albuns.update({
+    const updatedAlbum = await this.prismaService.albuns.update({
       where: { album_id },
       data: albumData
     })
 
     if(artistId){
-      await this.prisma.albumArtist.upsert({
+      await this.prismaService.albumArtist.upsert({
         where: {albumId_artistId: {albumId: album_id, artistId: artistId}},
         update: {artistId: artistId},
         create: {albumId: album_id, artistId: artistId}
@@ -94,7 +94,7 @@ export class AlbumsService {
   }
 
   async remove(album_id: number) {
-    const album = await this.prisma.albuns.findUnique({
+    const album = await this.prismaService.albuns.findUnique({
       where :{album_id}
     })
 
@@ -102,7 +102,7 @@ export class AlbumsService {
       throw new NotFoundException("Album nao encontrado")
     }
 
-    await this.prisma.albuns.delete({
+    await this.prismaService.albuns.delete({
       where:{album_id}
     })
 
